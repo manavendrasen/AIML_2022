@@ -1,0 +1,154 @@
+Test Case 2: 
+Initial State: 
+1 | 2 | 0 | 
+4 | 5 | 3 | 
+6 | 7 | 8 | 
+Checking child state (moving 0 down) 
+1 | 2 | 3 | 
+4 | 5 | 0 | 
+6 | 7 | 8 | 
+Heuristic Value: 2
+
+Checking child state (moving 0 left) 
+1 | 0 | 2 | 
+4 | 5 | 3 | 
+6 | 7 | 8 | 
+Heuristic Value: 4
+
+
+
+
+Moved to state using Steepest Ascent: 
+1 | 2 | 3 | 
+4 | 5 | 0 | 
+6 | 7 | 8 | 
+
+Checking child state (moving 0 down) 
+1 | 2 | 3 | 
+4 | 5 | 8 | 
+6 | 7 | 0 | 
+Heuristic Value: 3
+
+Checking child state (moving 0 left) 
+1 | 2 | 3 | 
+4 | 0 | 5 | 
+6 | 7 | 8 | 
+Heuristic Value: 0
+
+
+
+Moved to state using Steepest Ascent: 
+1 | 2 | 3 | 
+4 | 0 | 5 | 
+6 | 7 | 8 | 
+Reached Goal!
+----------------------------------
+Test Case 1: 
+Initial State: 
+1 | 2 | 3 | 
+4 | 7 | 5 | 
+6 | 0 | 8 | 
+
+
+Checking child state (moving 0 up) 
+1 | 2 | 3 | 
+4 | 0 | 5 | 
+6 | 7 | 8 | 
+Heuristic Value: 0
+
+Checking child state (moving 0 left) 
+1 | 2 | 3 | 
+4 | 7 | 5 | 
+0 | 6 | 8 | 
+Heuristic Value: 3
+
+Checking child state (moving 0 right) 
+1 | 2 | 3 | 
+4 | 7 | 5 | 
+6 | 8 | 0 | 
+Heuristic Value: 3
+
+
+Moved to state using Steepest Ascent: 
+1 | 2 | 3 | 
+4 | 0 | 5 | 
+6 | 7 | 8 | 
+Reached Goal!
+----------------------------------
+Test Case 0: 
+Initial State: 
+0 | 2 | 3 | 
+1 | 7 | 5 | 
+4 | 6 | 8 | 
+Checking child state (moving 0 down) 
+1 | 2 | 3 | 
+0 | 7 | 5 | 
+4 | 6 | 8 | 
+Heuristic Value: 4
+
+Checking child state (moving 0 right) 
+2 | 0 | 3 | 
+1 | 7 | 5 | 
+4 | 6 | 8 | 
+Heuristic Value: 6
+
+
+
+
+Moved to state using Steepest Ascent: 
+1 | 2 | 3 | 
+0 | 7 | 5 | 
+4 | 6 | 8 | 
+
+Checking child state (moving 0 down) 
+1 | 2 | 3 | 
+4 | 7 | 5 | 
+0 | 6 | 8 | 
+Heuristic Value: 3
+
+Checking child state (moving 0 right) 
+1 | 2 | 3 | 
+7 | 0 | 5 | 
+4 | 6 | 8 | 
+Heuristic Value: 3
+
+
+
+Moved to state using Steepest Ascent: 
+1 | 2 | 3 | 
+4 | 7 | 5 | 
+0 | 6 | 8 | 
+
+
+Checking child state (moving 0 right) 
+1 | 2 | 3 | 
+4 | 7 | 5 | 
+6 | 0 | 8 | 
+Heuristic Value: 2
+
+
+Moved to state using Steepest Ascent: 
+1 | 2 | 3 | 
+4 | 7 | 5 | 
+6 | 0 | 8 | 
+
+
+Checking child state (moving 0 up) 
+1 | 2 | 3 | 
+4 | 0 | 5 | 
+6 | 7 | 8 | 
+Heuristic Value: 0
+
+Checking child state (moving 0 right) 
+1 | 2 | 3 | 
+4 | 7 | 5 | 
+6 | 8 | 0 | 
+Heuristic Value: 3
+
+
+Moved to state using Steepest Ascent: 
+1 | 2 | 3 | 
+4 | 0 | 5 | 
+6 | 7 | 8 | 
+Reached Goal!
+----------------------------------
