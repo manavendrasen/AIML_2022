@@ -1,15 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void io()
-{
-	// For getting input from input.txt file
-	freopen("input.txt", "r", stdin);
-
-	// Printing the Output to output.txt file
-	freopen("output.txt", "w", stdout);
-}
-
 class Graph
 {
 	int **adj;
@@ -62,7 +53,8 @@ public:
 		priority_queue<pair<int, int>, vector<pair<int, int>>, decltype(comparator)> pq(comparator);
 		vector<bool> visited(no_of_nodes, false);
 		vector<int> distance_from_source(no_of_nodes, INT_MAX);
-		pq.push(make_pair(source, 0));
+		vector<int> parent(no_of_nodes, -1);
+		pq.push(make_pair(source, get_fn(source, 0)));
 		distance_from_source[source] = 0;
 
 		while (!pq.empty())
@@ -73,30 +65,33 @@ public:
 			if (current == goal)
 				break;
 
-			if (visited[current] == true)
-				continue;
-
 			visited[current] = true;
-			cout << "current node visited: " << current << endl;
-			cout << "possible paths: " << endl;
+			// cout << "current node visited: " << current << endl;
+			// cout << "possible paths: " << endl;
 			for (int next = 0; next < no_of_nodes; next++)
 			{
-				if (adj[current][next] != 0 && !visited[next])
+				if (adj[current][next] != 0)
 				{
 					distance_from_source[next] = min(distance_from_source[next], distance_from_source[current] + adj[current][next]);
 					int fn = get_fn(next, distance_from_source[next]);
 					pq.push(make_pair(next, fn));
-					cout << current << "->" << next << " f(N) = " << fn << endl;
+					parent[next] = current;
+					// cout << current << "->" << next << " f(N) = " << fn << endl;
 				}
 			}
+		}
+
+		int current = goal;
+		while (current != -1)
+		{
+			cout << current << " <- ";
+			current = parent[current];
 		}
 	}
 };
 
 int main()
 {
-	io();
-
 	Graph g = Graph(6);
 	g.add_edge(0, 1, 1);
 	g.add_edge(0, 2, 4);
@@ -105,7 +100,7 @@ int main()
 	g.add_edge(1, 4, 12);
 	g.add_edge(2, 3, 2);
 	g.add_edge(3, 4, 3);
-	// g.print_graph();
+
 	vector<int> heuristic_values = {7, 6, 2, 1, 0};
 	g.set_heuristic_values(heuristic_values);
 
