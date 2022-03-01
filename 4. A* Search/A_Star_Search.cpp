@@ -65,9 +65,8 @@ public:
 			if (current == goal)
 				break;
 
-			visited[current] = true;
-			// cout << "current node visited: " << current << endl;
-			// cout << "possible paths: " << endl;
+			cout << "current node visited: " << current << endl;
+			cout << "possible paths: " << endl;
 			for (int next = 0; next < no_of_nodes; next++)
 			{
 				if (adj[current][next] != 0)
@@ -76,9 +75,10 @@ public:
 					int fn = get_fn(next, distance_from_source[next]);
 					pq.push(make_pair(next, fn));
 					parent[next] = current;
-					// cout << current << "->" << next << " f(N) = " << fn << endl;
+					cout << current << "->" << next << " f(N) = " << fn << endl;
 				}
 			}
+			visited[current] = true;
 		}
 
 		int current = goal;
