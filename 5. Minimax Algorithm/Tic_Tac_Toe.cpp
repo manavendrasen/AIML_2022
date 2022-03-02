@@ -29,12 +29,12 @@ public:
 		this->board = board;
 	}
 
-	void make_move(int row, int col, char player)
+	void makeMove(int row, int col, char player)
 	{
 		board.at(row).at(col) = player;
 	}
 
-	bool is_move_left()
+	bool isMoveLeft()
 	{
 		for (int i = 0; i < 3; i++)
 			for (int j = 0; j < 3; j++)
@@ -43,7 +43,7 @@ public:
 		return false;
 	}
 
-	int calculate_score()
+	int calculateScore()
 	{
 		// Checking for Rows for X or O victory.
 		for (int row = 0; row < 3; row++)
@@ -95,11 +95,11 @@ public:
 
 	int minimax(char player)
 	{
-		int score = calculate_score();
+		int score = calculateScore();
 		if (score == X_WIN || score == O_WIN)
 			return score;
 
-		else if (!is_move_left())
+		else if (!isMoveLeft())
 			return 0;
 
 		if (player == X)
@@ -109,7 +109,7 @@ public:
 				for (int col = 0; col < 3; col++)
 					if (board.at(row).at(col) == BLANK)
 					{
-						make_move(row, col, player);
+						makeMove(row, col, player);
 						best = max(best, minimax(O));
 						board.at(row).at(col) = BLANK;
 					}
@@ -122,7 +122,7 @@ public:
 				for (int col = 0; col < 3; col++)
 					if (board.at(row).at(col) == BLANK)
 					{
-						make_move(row, col, player);
+						makeMove(row, col, player);
 						best = min(best, minimax(X));
 						board.at(row).at(col) = BLANK;
 					}
@@ -130,7 +130,7 @@ public:
 		}
 	}
 
-	pair<int, int> find_best_move()
+	pair<int, int> findBestMove()
 	{
 		int best_score = -1000;
 		pair<int, int> best_move = make_pair(-1, -1);
@@ -143,7 +143,7 @@ public:
 			for (int col = 0; col < 3; col++)
 				if (board.at(row).at(col) == BLANK)
 				{
-					make_move(row, col, X);
+					makeMove(row, col, X);
 					int score = minimax(O);
 
 					// reset board
@@ -169,7 +169,7 @@ int main()
 
 	Board board(input_board);
 
-	pair<int, int> move = board.find_best_move();
+	pair<int, int> move = board.findBestMove();
 	cout << "Best Move: " << move.first << " " << move.second << endl;
 
 	return 0;

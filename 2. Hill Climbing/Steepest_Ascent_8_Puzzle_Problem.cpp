@@ -12,7 +12,7 @@ private:
 	const static int right = 4;
 
 	// Goal State of the puzzle
-	int goalState[N][N] = {
+	int goal_state[N][N] = {
 			{1, 2, 3},
 			{4, 0, 5},
 			{6, 7, 8}};
@@ -34,20 +34,20 @@ public:
 	// calculate the heuristic value
 	int calculateHeuristicValue(int **temp)
 	{
-		int hValue = 0;
+		int heuristic_value = 0;
 		for (int i = 0; i < N; i++)
 		{
 			for (int j = 0; j < N; j++)
 			{
-				if (temp[i][j] != goalState[i][j])
+				if (temp[i][j] != goal_state[i][j])
 				{
-					hValue++;
+					heuristic_value++;
 				}
 			}
 		}
-		cout << "Heuristic Value: " << hValue << endl;
+		cout << "Heuristic Value: " << heuristic_value << endl;
 		cout << endl;
-		return hValue;
+		return heuristic_value;
 	}
 
 	// move the 0 tile
@@ -110,53 +110,53 @@ public:
 		}
 		makeMove(temp, move);
 		printGrid(temp);
-		int hValue = calculateHeuristicValue(temp);
+		int heuristic_value = calculateHeuristicValue(temp);
 		for (int i = 0; i < N; i++)
 			delete temp[i];
 		delete temp;
-		return hValue;
+		return heuristic_value;
 	}
 
-	void SAHillClimbing(int **state, int formerMove, int currentHValue)
+	void SAHillClimbing(int **state, int former_move, int current_heuristic)
 	{
-		int childrenHValues[4] = {100, 100, 100, 100};
+		int child_heuristics[4] = {100, 100, 100, 100};
 		for (int i = 0; i < N; i++)
 		{
 			for (int j = 0; j < N; j++)
 			{
 				if (state[i][j] == 0)
 				{
-					if (i > 0 && formerMove != down)
+					if (i > 0 && former_move != down)
 					{
 						cout << "Checking child state (moving 0 up) " << endl;
-						childrenHValues[0] = generateNextState(state, up);
+						child_heuristics[0] = generateNextState(state, up);
 					}
-					if (i < N - 1 && formerMove != up)
+					if (i < N - 1 && former_move != up)
 					{
 						cout << "Checking child state (moving 0 down) " << endl;
-						childrenHValues[1] = generateNextState(state, down);
+						child_heuristics[1] = generateNextState(state, down);
 					}
-					if (j > 0 && formerMove != right)
+					if (j > 0 && former_move != right)
 					{
 						cout << "Checking child state (moving 0 left) " << endl;
-						childrenHValues[2] = generateNextState(state, left);
+						child_heuristics[2] = generateNextState(state, left);
 					}
-					if (j < N - 1 && formerMove != left)
+					if (j < N - 1 && former_move != left)
 					{
 						cout << "Checking child state (moving 0 right) " << endl;
-						childrenHValues[3] = generateNextState(state, right);
+						child_heuristics[3] = generateNextState(state, right);
 					}
 				}
 			}
 			cout << endl;
 		}
-		int localOptimum = currentHValue;
+		int local_optimum = current_heuristic;
 		int move = 0;
 		for (int i = 0; i < 4; i++)
 		{
-			if (childrenHValues[i] < localOptimum)
+			if (child_heuristics[i] < local_optimum)
 			{
-				localOptimum = childrenHValues[i];
+				local_optimum = child_heuristics[i];
 				move = i + 1;
 			}
 		}
@@ -166,13 +166,13 @@ public:
 		printGrid(state);
 
 		// base case
-		if (localOptimum == 0)
+		if (local_optimum == 0)
 		{
 			cout << "Reached Goal!" << endl;
 			return;
 		}
 		else
-			SAHillClimbing(state, move, localOptimum);
+			SAHillClimbing(state, move, local_optimum);
 	}
 };
 
@@ -190,21 +190,21 @@ int main()
 	while (t--)
 	{
 		cout << "Test Case " << t << ": " << endl;
-		int **initialState = new int *[N];
+		int **initial_state = new int *[N];
 		for (int i = 0; i < N; i++)
 		{
-			initialState[i] = new int[N];
+			initial_state[i] = new int[N];
 			for (int j = 0; j < N; j++)
 			{
-				cin >> initialState[i][j];
+				cin >> initial_state[i][j];
 			}
 		}
 
 		Solution s = Solution();
 		cout << "Initial State: " << endl;
-		s.printGrid(initialState);
-		int initialHValue = s.calculateHeuristicValue(initialState);
-		s.SAHillClimbing(initialState, 0, initialHValue);
+		s.printGrid(initial_state);
+		int initial_heuristic = s.calculateHeuristicValue(initial_state);
+		s.SAHillClimbing(initial_state, 0, initial_heuristic);
 		cout << "----------------------------------" << endl;
 	}
 }
