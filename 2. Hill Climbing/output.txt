@@ -3,6 +3,8 @@ Initial State:
 1 | 2 | 0 | 
 4 | 5 | 3 | 
 6 | 7 | 8 | 
+Heuristic Value: 3
+
 Checking child state (moving 0 down) 
 1 | 2 | 3 | 
 4 | 5 | 0 | 
@@ -18,7 +20,7 @@ Heuristic Value: 4
 
 
 
-Moved to state using Steepest Ascent: 
+Moved to state using Steepest Ascent Hill Climbing: 
 1 | 2 | 3 | 
 4 | 5 | 0 | 
 6 | 7 | 8 | 
@@ -37,7 +39,7 @@ Heuristic Value: 0
 
 
 
-Moved to state using Steepest Ascent: 
+Moved to state using Steepest Ascent Hill Climbing: 
 1 | 2 | 3 | 
 4 | 0 | 5 | 
 6 | 7 | 8 | 
@@ -48,6 +50,8 @@ Initial State:
 1 | 2 | 3 | 
 4 | 7 | 5 | 
 6 | 0 | 8 | 
+Heuristic Value: 2
+
 
 
 Checking child state (moving 0 up) 
@@ -69,7 +73,7 @@ Checking child state (moving 0 right)
 Heuristic Value: 3
 
 
-Moved to state using Steepest Ascent: 
+Moved to state using Steepest Ascent Hill Climbing: 
 1 | 2 | 3 | 
 4 | 0 | 5 | 
 6 | 7 | 8 | 
@@ -80,6 +84,8 @@ Initial State:
 0 | 2 | 3 | 
 1 | 7 | 5 | 
 4 | 6 | 8 | 
+Heuristic Value: 5
+
 Checking child state (moving 0 down) 
 1 | 2 | 3 | 
 0 | 7 | 5 | 
@@ -95,7 +101,7 @@ Heuristic Value: 6
 
 
 
-Moved to state using Steepest Ascent: 
+Moved to state using Steepest Ascent Hill Climbing: 
 1 | 2 | 3 | 
 0 | 7 | 5 | 
 4 | 6 | 8 | 
@@ -114,7 +120,7 @@ Heuristic Value: 3
 
 
 
-Moved to state using Steepest Ascent: 
+Moved to state using Steepest Ascent Hill Climbing: 
 1 | 2 | 3 | 
 4 | 7 | 5 | 
 0 | 6 | 8 | 
@@ -127,7 +133,7 @@ Checking child state (moving 0 right)
 Heuristic Value: 2
 
 
-Moved to state using Steepest Ascent: 
+Moved to state using Steepest Ascent Hill Climbing: 
 1 | 2 | 3 | 
 4 | 7 | 5 | 
 6 | 0 | 8 | 
@@ -146,7 +152,7 @@ Checking child state (moving 0 right)
 Heuristic Value: 3
 
 
-Moved to state using Steepest Ascent: 
+Moved to state using Steepest Ascent Hill Climbing: 
 1 | 2 | 3 | 
 4 | 0 | 5 | 
 6 | 7 | 8 | 

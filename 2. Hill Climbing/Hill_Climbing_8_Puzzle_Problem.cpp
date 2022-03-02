@@ -117,7 +117,7 @@ public:
 		return hValue;
 	}
 
-	void SAHillClimbing(int **state, int formerMove, int currentHValue)
+	void HillClimbing(int **state, int formerMove, int currentHValue)
 	{
 		int childrenHValues[4] = {100, 100, 100, 100};
 		for (int i = 0; i < N; i++)
@@ -158,11 +158,12 @@ public:
 			{
 				localOptimum = childrenHValues[i];
 				move = i + 1;
+				break;
 			}
 		}
 		// move and update state
 		makeMove(state, move);
-		cout << "Moved to state using Steepest Ascent Hill Climbing: " << endl;
+		cout << "Moved to state using Hill Climbing: " << endl;
 		printGrid(state);
 
 		// base case
@@ -172,7 +173,7 @@ public:
 			return;
 		}
 		else
-			SAHillClimbing(state, move, localOptimum);
+			HillClimbing(state, move, localOptimum);
 	}
 };
 
@@ -204,7 +205,7 @@ int main()
 		cout << "Initial State: " << endl;
 		s.printGrid(initialState);
 		int initialHValue = s.calculateHeuristicValue(initialState);
-		s.SAHillClimbing(initialState, 0, initialHValue);
+		s.HillClimbing(initialState, 0, initialHValue);
 		cout << "----------------------------------" << endl;
 	}
 }
