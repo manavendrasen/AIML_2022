@@ -100,7 +100,12 @@ if __name__ == '__main__':
         snake.move(snake_direction)
 
         if(snake.isAlive() == False):
-            game.game_over()
+            snake_direction = direction.RIGHT
+            snake_body = [(100, 100), (100 - TILE_SIZE, 100),
+                          (100 - (2*TILE_SIZE), 100)]
+            snake = Snake(snake_direction, snake_body)
+            food = Food()
+            game.score = 0
 
         # Check if the snake has eaten the food
         if snake.get_head() == food.get_position():
