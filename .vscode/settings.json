@@ -18,6 +18,7 @@
     "streambuf": "cpp",
     "regex": "cpp",
     "tuple": "cpp",
-    "utility": "cpp"
+    "utility": "cpp",
+    "ostream": "cpp"
   }
 }
