@@ -62,12 +62,12 @@ To get started with this project install the following
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/manavendrasen/AIML_Lab_2022;
+   git clone https://github.com/manavendrasen/AIML_Lab_2022
    ```
 2. Create a virtual env
 
    ```sh
-   cd Project
+   cd AIML_Lab_2022/Project
    python -m venv env
    ```
 
