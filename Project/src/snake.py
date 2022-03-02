@@ -16,6 +16,8 @@ class Snake:
         return self.body
 
     def move(self, change_direction_to):
+
+        # Stop snake to move in the opposite direction
         if self.direction != direction.UP and change_direction_to == direction.DOWN:
             self.direction = direction.DOWN
         elif self.direction != direction.DOWN and change_direction_to == direction.UP:
