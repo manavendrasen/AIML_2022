@@ -22,42 +22,42 @@ int capacity_x, capacity_y, target_x, target_y;
 
 state genNewState(const state current, map<state, bool> &visited)
 {
-	state newState;
+	state new_state;
 
 	// Rule 1:
 	// Fill the first jug
-	newState = (state){capacity_x, current.y};
-	if (visited[newState] != true)
+	new_state = (state){capacity_x, current.y};
+	if (visited[new_state] != true)
 	{
 		printf("Fill the first jug - State : (%d, %d)  \n", capacity_x, current.y);
-		return newState;
+		return new_state;
 	}
 
 	// Rule 2:
 	// Fill the second jug
-	newState = (state){current.x, capacity_y};
-	if (visited[newState] != true)
+	new_state = (state){current.x, capacity_y};
+	if (visited[new_state] != true)
 	{
 		printf("Fill the second jug - State : (%d, %d)\n", current.x, capacity_y);
-		return newState;
+		return new_state;
 	}
 
 	// Rule 3:
 	// Empty the first jug
-	newState = (state){0, current.y};
-	if (visited[newState] != true)
+	new_state = (state){0, current.y};
+	if (visited[new_state] != true)
 	{
 		printf("Empty the first jug - State : (%d, %d)\n", 0, current.y);
-		return newState;
+		return new_state;
 	}
 
 	// Rule 4:
 	// Empty the second jug
-	newState = (state){current.x, 0};
-	if (visited[newState] != true)
+	new_state = (state){current.x, 0};
+	if (visited[new_state] != true)
 	{
 		printf("Empty the second jug - State : (%d, %d)\n", current.x, 0);
-		return newState;
+		return new_state;
 	}
 
 	// Rule 5:
@@ -67,61 +67,61 @@ state genNewState(const state current, map<state, bool> &visited)
 	{
 		int d = capacity_y - current.y;
 		if (d >= current.x)
-			newState = (state){0, current.x + current.y};
+			new_state = (state){0, current.x + current.y};
 		else
-			newState = (state){current.x - d, current.y + d};
+			new_state = (state){current.x - d, current.y + d};
 
 		printf("Pour from second jug into first jug - State : (%d, %d)\n", min(current.x + current.y, capacity_x), max(0, current.x + current.y - capacity_x));
-		return newState;
+		return new_state;
 	}
 
 	if (current.x < capacity_x && current.y != 0)
 	{
 		int d = capacity_x - current.x;
 		if (d >= current.y)
-			newState = (state){current.x + current.y, 0};
+			new_state = (state){current.x + current.y, 0};
 		else
-			newState = (state){current.x + d, current.y - d};
+			new_state = (state){current.x + d, current.y - d};
 
 		printf("Pour from second jug into first jug - State : (%d, %d)\n", min(current.x + current.y, capacity_x), max(0, current.x + current.y - capacity_x));
-		return newState;
+		return new_state;
 	}
 
 	printf("Could not generate new state");
 	exit(0);
-	return newState;
+	return new_state;
 }
 
-void dfs(state start)
+void bfs(state start)
 {
-	stack<state> dfs_stack;
+	queue<state> bfs_queue;
 	map<state, bool> visited;
 
-	bool foundTarget = false;
+	bool found_target = false;
 
-	dfs_stack.push(start);
+	bfs_queue.push(start);
 	visited[start] = true;
 	printf("Initial State : (%d, %d)\n", 0, 0);
 
-	while (!dfs_stack.empty())
+	while (!bfs_queue.empty())
 	{
 		// Get the state at the front of the stack
-		state current = dfs_stack.top();
-		dfs_stack.pop();
+		state current = bfs_queue.front();
+		bfs_queue.pop();
 
 		// If the target state has been found, break
 		if (current.x == target_x && current.y == target_y)
 		{
-			foundTarget = true;
+			found_target = true;
 			break;
 		}
 
-		state newState = genNewState(current, visited);
-		dfs_stack.push(newState);
-		visited[newState] = true;
+		state new_state = genNewState(current, visited);
+		bfs_queue.push(new_state);
+		visited[new_state] = true;
 	}
 
-	if (!foundTarget)
+	if (!found_target)
 	{
 		printf("\nTarget cannot be reached.\n");
 		return;
@@ -135,7 +135,7 @@ int main()
 	printf("Enter the target capacities of the two jugs : ");
 	scanf("%d %d", &target_x, &target_y);
 
-	state initialState = (state){0, 0};
+	state initial_state = (state){0, 0};
 
-	dfs(initialState);
+	bfs(initial_state);
 }
