@@ -93,7 +93,7 @@ public:
 		return 0;
 	}
 
-	int minimax(char player)
+	int minimax(char player, int alpha, int beta)
 	{
 		int score = calculateScore();
 		if (score == X_WIN || score == O_WIN)
@@ -110,7 +110,11 @@ public:
 					if (board.at(row).at(col) == BLANK)
 					{
 						makeMove(row, col, player);
-						best = max(best, minimax(O));
+						int eval = minimax(O, alpha, beta);
+						best = max(best, eval);
+						alpha = max(alpha, eval);
+						if (beta <= alpha)
+							break;
 						board.at(row).at(col) = BLANK;
 					}
 			return best;
@@ -123,7 +127,10 @@ public:
 					if (board.at(row).at(col) == BLANK)
 					{
 						makeMove(row, col, player);
-						best = min(best, minimax(X));
+						int eval = minimax(X, alpha, beta);
+						best = min(best, eval);
+						if (beta <= alpha)
+							break;
 						board.at(row).at(col) = BLANK;
 					}
 			return best;
@@ -144,7 +151,7 @@ public:
 				if (board.at(row).at(col) == BLANK)
 				{
 					makeMove(row, col, X);
-					int score = minimax(O);
+					int score = minimax(O, -INT_MAX, INT_MAX);
 
 					// reset board
 					board.at(row).at(col) = BLANK;
