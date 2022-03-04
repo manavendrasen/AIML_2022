@@ -10,6 +10,8 @@ from src.tile import Tile
 from src.snake import Snake
 from src.food import Food
 
+from bfs_search import *
+
 
 class Game:
     def __init__(self) -> None:
@@ -59,7 +61,7 @@ class Game:
         sys.exit()
 
 
-if __name__ == '__main__':
+def main():
     game = Game()
 
     # Create a new snake
@@ -98,6 +100,8 @@ if __name__ == '__main__':
             food.x, food.y, TILE_SIZE, TILE_SIZE))
 
         snake.move(snake_direction)
+        # bfs_search(snake, food)
+        # print(directions)
 
         if(snake.isAlive() == False):
             snake_direction = direction.RIGHT
@@ -116,3 +120,6 @@ if __name__ == '__main__':
 
         pygame.display.update()
         game.fps_controller.tick(FPS)
+
+
+main()
