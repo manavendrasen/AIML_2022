@@ -1,3 +1,5 @@
 # AIML_Lab_2022
-AI ML Lab at MUJ
 
+Course work of Artificial Intelligence and Machine Learning Lab 2022
+
+(wip)
