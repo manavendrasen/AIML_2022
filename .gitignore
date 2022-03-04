@@ -1,3 +1,5 @@
 Project/env
 **_pycache_
 *.pyc
+
+.vscode
