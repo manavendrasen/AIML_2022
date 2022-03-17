@@ -159,6 +159,7 @@ public:
 				local_optimum = child_heuristics[i];
 				move = i + 1;
 				break;
+				// IMP - breaks the search at the first child with a better (lower in this case) heuristic value
 			}
 		}
 		// move and update state

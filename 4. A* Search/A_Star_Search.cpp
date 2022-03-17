@@ -39,6 +39,7 @@ public:
 		heuristic_values = h;
 	}
 
+	// calculate the f(N) value = g(N) + h(N)
 	int get_fn(int index, int dist)
 	{
 		return heuristic_values[index] + dist;
@@ -46,14 +47,25 @@ public:
 
 	void a_star_search(int source, int goal)
 	{
+		// create a priority queue to store the nodes arranged in order of their f(N) value
 		auto comparator = [](const pair<int, int> &a, const pair<int, int> &b)
 		{
 			return a.second > b.second;
 		};
+
+		// we are storing a pair (node index, f(N) value) in the priority queue, ordered by f(N) value in the priority queue
 		priority_queue<pair<int, int>, vector<pair<int, int>>, decltype(comparator)> pq(comparator);
+
+		// visited array to keep track of visited nodes
 		vector<bool> visited(no_of_nodes, false);
+
+		// distance array to keep track of the distance from source to the node = g(N)
 		vector<int> distance_from_source(no_of_nodes, INT_MAX);
+
+		// parent array to keep track of the parent of the node - to trace back
 		vector<int> parent(no_of_nodes, -1);
+
+		// insert the source node in the priority queue
 		pq.push(make_pair(source, get_fn(source, 0)));
 		distance_from_source[source] = 0;
 
