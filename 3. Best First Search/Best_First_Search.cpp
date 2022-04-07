@@ -50,6 +50,7 @@ public:
 				if (!visited[graph[current][next].first])
 				{
 					visited[graph[current][next].first] = true;
+					// .first is the next node .second is the cost from current node to next node
 					pq.push(make_pair(graph[current][next].first, graph[current][next].second));
 				}
 			}

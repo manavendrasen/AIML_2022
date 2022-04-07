@@ -75,6 +75,8 @@ state genNewState(const state current, map<state, bool> &visited)
 		return new_state;
 	}
 
+	// Rule 6
+	// Pour from second jug into first jug
 	if (current.x < capacity_x && current.y != 0)
 	{
 		int d = capacity_x - current.x;
