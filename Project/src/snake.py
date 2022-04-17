@@ -59,14 +59,16 @@ class Snake:
 
     def auto_move(self, direction_list):
         for direction in direction_list:
-            if self.direction == RIGHT:
+            if direction == RIGHT:
                 self.head = (self.head[0] + TILE_SIZE, self.head[1])
-            elif self.direction == LEFT:
+            elif direction == LEFT:
                 self.head = (self.head[0] - TILE_SIZE, self.head[1])
-            elif self.direction == UP:
+            elif direction == UP:
                 self.head = (self.head[0], self.head[1] - TILE_SIZE)
-            elif self.direction == DOWN:
+            elif direction == DOWN:
                 self.head = (self.head[0], self.head[1] + TILE_SIZE)
+
+            self.direction = direction
 
             self.body.insert(0, list(self.head))
             self.body.pop()

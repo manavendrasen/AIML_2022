@@ -1,5 +1,7 @@
+import enum
 import pygame
 import sys
+import itertools
 
 from config.game_settings import *
 
@@ -92,16 +94,23 @@ def main():
 
         game.draw_background()
 
-        for body_block in snake.get_body():
-            pygame.draw.rect(game.window, game.get_snake_color(), pygame.Rect(
-                body_block[0], body_block[1], TILE_SIZE, TILE_SIZE))
+        for index, body_block in enumerate(snake.get_body()):
+            if index == 0:
+                pygame.draw.rect(game.window, colors.WHITE, pygame.Rect(
+                    body_block[0], body_block[1], TILE_SIZE, TILE_SIZE))
+            else:
+                pygame.draw.rect(game.window, game.get_snake_color(), pygame.Rect(
+                    body_block[0], body_block[1], TILE_SIZE, TILE_SIZE))
 
         pygame.draw.rect(game.window, colors.RED, pygame.Rect(
             food.x, food.y, TILE_SIZE, TILE_SIZE))
 
-        snake.move(snake_direction)
+        # snake.move(snake_direction)
         # bfs_search(snake, food)
         # print(directions)
+        # directions = [direction.RIGHT, direction.UP,
+        #               direction.LEFT, direction.DOWN]
+        # snake.auto_move(directions)
 
         if(snake.isAlive() == False):
             snake_direction = direction.RIGHT
