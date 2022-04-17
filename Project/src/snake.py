@@ -1,3 +1,4 @@
+import pygame
 from config.game_settings import *
 from constants.directions import *
 
@@ -57,18 +58,11 @@ class Snake:
                 return False
         return True
 
-    def auto_move(self, direction_list):
-        for direction in direction_list:
-            if direction == RIGHT:
-                self.head = (self.head[0] + TILE_SIZE, self.head[1])
-            elif direction == LEFT:
-                self.head = (self.head[0] - TILE_SIZE, self.head[1])
-            elif direction == UP:
-                self.head = (self.head[0], self.head[1] - TILE_SIZE)
-            elif direction == DOWN:
-                self.head = (self.head[0], self.head[1] + TILE_SIZE)
-
-            self.direction = direction
-
-            self.body.insert(0, list(self.head))
-            self.body.pop()
+    # def auto_move(self, direction_list):
+    #     direction_list_copy = direction_list
+    #     for direction in direction_list_copy:
+    #         print("move", direction)
+    #         # self.move(direction)
+    #         # direction_list.remove(direction)
+    #         # time.sleep(5)
+    #     time.sleep(10)

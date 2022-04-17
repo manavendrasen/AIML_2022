@@ -75,7 +75,7 @@ def main():
 
     # Create a new food
     food = Food()
-
+    is_snake_moving = True
     while game.running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -108,9 +108,22 @@ def main():
         # snake.move(snake_direction)
         # bfs_search(snake, food)
         # print(directions)
-        # directions = [direction.RIGHT, direction.UP,
-        #               direction.LEFT, direction.DOWN]
-        # snake.auto_move(directions)
+
+        if(is_snake_moving):
+            directions = [direction.RIGHT, direction.DOWN,
+                          direction.LEFT, direction.DOWN, direction.RIGHT]
+
+            while(len(directions) > 0):
+                snake.move(directions.pop(0))
+                # time.sleep(1)
+                # if(snake.has_eaten(food)):
+                #     food.respawn(snake)
+                #     game.score += 1
+                #     print(game.score)
+                # if(snake.has_collided()):
+                #     game.game_over()
+
+            is_snake_moving = False
 
         if(snake.isAlive() == False):
             snake_direction = direction.RIGHT
