@@ -20,29 +20,19 @@ def bfs_search(snake, food):
     while not bfs_queue.isEmpty():
         current = bfs_queue.pop()
         current_position, directions = current
-        # print(current_position, directions)
-        if current_position == food.get_position():
-            print("food position", food.get_position())
-
-            print("Found food")
-            print("Directions: ", directions)
-            snake.auto_move(directions)
-            print("snake position", snake.get_head())
-            return directions
-            # break
-        #     snake.auto_move(directions)
-        #     snake.grow()
-        #     food.despawn()
-        #     food.spawn()
-        #     time.sleep(20)
-        #     return
-
         visited.add(current_position)
-        count = 0
-        for neighbor in get_neighbors(current_position, directions[-1], snake):
+
+        if current_position == food.get_position():
+            print("current_position", current_position)
+            print("food position", food.get_position())
+            print("Found food")
+            # game.score += 1
+            snake.grow()
+            # food.despawn()
+            # food.spawn()
+            return directions
+
+        for neighbor in get_neighbors(current_position, directions[len(directions) - 1], snake):
             if neighbor.get_position() not in visited:
-                count += 1
-                if(count == 4):
-                    time.sleep(100)
                 bfs_queue.push(
                     (neighbor.get_position(), directions + [neighbor.get_direction()]))

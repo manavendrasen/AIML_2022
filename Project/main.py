@@ -1,4 +1,5 @@
 import enum
+from this import d
 import pygame
 import sys
 import itertools
@@ -105,24 +106,21 @@ def main():
         pygame.draw.rect(game.window, colors.RED, pygame.Rect(
             food.x, food.y, TILE_SIZE, TILE_SIZE))
 
-        # snake.move(snake_direction)
         # bfs_search(snake, food)
         # print(directions)
 
         if(is_snake_moving):
-            directions = [direction.RIGHT, direction.DOWN,
-                          direction.LEFT, direction.DOWN, direction.RIGHT]
+            # snake.move(snake_direction)
+
+            # BFS SEARCH
+            directions = bfs_search(snake, food)
 
             while(len(directions) > 0):
-                snake.move(directions.pop(0))
-                # time.sleep(1)
-                # if(snake.has_eaten(food)):
-                #     food.respawn(snake)
-                #     game.score += 1
-                #     print(game.score)
-                # if(snake.has_collided()):
-                #     game.game_over()
-
+                dir = directions.pop(0)
+                print(dir)
+                snake.move(dir)
+            snake.move(direction.LEFT)
+            print(snake.get_head())
             is_snake_moving = False
 
         if(snake.isAlive() == False):
