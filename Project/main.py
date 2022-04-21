@@ -119,7 +119,7 @@ def main():
                 dir = directions.pop(0)
                 print(dir)
                 snake.move(dir)
-            snake.move(direction.LEFT)
+            # snake.move(direction.LEFT)
             print(snake.get_head())
             is_snake_moving = False
 
