@@ -2,7 +2,6 @@ import enum
 from this import d
 import pygame
 import sys
-import itertools
 
 from config.game_settings import *
 
@@ -14,6 +13,7 @@ from src.snake import Snake
 from src.food import Food
 
 from bfs_search import *
+from dfs_search import *
 
 
 class Game:
@@ -109,21 +109,19 @@ def main():
         pygame.draw.rect(game.window, colors.RED, pygame.Rect(
             food.x, food.y, TILE_SIZE, TILE_SIZE))
 
-        # bfs_search(snake, food)
-        # print(directions)
-
         if(is_snake_moving):
-            # snake.move(snake_direction)
-
             # BFS SEARCH
-            directions = bfs_search(snake, food)
+            # directions = bfs_search(snake, food)
+
+            # DFS SEARCH
+            directions = dfs_search(snake, food)
 
             while(len(directions) > 0):
                 dir = directions.pop(0)
                 print(dir)
                 snake.move(dir)
             # snake.move(direction.LEFT)
-            print("Position of snake head after bfs", snake.get_head())
+            print("Position of snake head after search", snake.get_head())
             is_snake_moving = False
 
         if(snake.isAlive() == False):
