@@ -95,6 +95,9 @@ def main():
 
         game.draw_background()
 
+        pygame.draw.rect(game.window, colors.YELLOW, pygame.Rect(
+            100, 100, TILE_SIZE, TILE_SIZE))
+
         for index, body_block in enumerate(snake.get_body()):
             if index == 0:
                 pygame.draw.rect(game.window, colors.WHITE, pygame.Rect(
@@ -120,7 +123,7 @@ def main():
                 print(dir)
                 snake.move(dir)
             # snake.move(direction.LEFT)
-            print(snake.get_head())
+            print("Position of snake head after bfs", snake.get_head())
             is_snake_moving = False
 
         if(snake.isAlive() == False):
@@ -132,11 +135,11 @@ def main():
             game.score = 0
 
         # Check if the snake has eaten the food
-        if snake.get_head() == food.get_position():
-            game.score += 1
-            snake.grow()
-            food.despawn()
-            food.spawn()
+        # if snake.get_head() == food.get_position():
+        #     game.score += 1
+        #     snake.grow()
+        #     food.despawn()
+        #     food.spawn()
 
         pygame.display.update()
         game.fps_controller.tick(FPS)

@@ -27,9 +27,10 @@ def bfs_search(snake, food):
             print("food position", food.get_position())
             print("Found food")
             # game.score += 1
-            snake.grow()
+            # snake.grow()
             # food.despawn()
             # food.spawn()
+            directions = directions[1:]
             return directions
 
         for neighbor in get_neighbors(current_position, directions[len(directions) - 1], snake):
