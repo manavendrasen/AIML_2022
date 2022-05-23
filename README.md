@@ -19,4 +19,6 @@ Course work of Artificial Intelligence and Machine Learning Lab 2022
 1. Minimax Algorithm - Tic Tac Toe
 2. Minimax + Alpha Beta Pruning 
 
-(wip)
+### Machine Learning
+1. Decision Tree
+2. Back Propagation
