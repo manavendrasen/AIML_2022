@@ -1,5 +1,8 @@
+import pygame
 from config.game_settings import *
-import constants.directions as direction
+from constants.directions import *
+
+import time
 
 
 class Snake:
@@ -15,25 +18,28 @@ class Snake:
     def get_body(self):
         return self.body
 
+    def get_direction(self):
+        return self.direction
+
     def move(self, change_direction_to):
 
         # Stop snake to move in the opposite direction
-        if self.direction != direction.UP and change_direction_to == direction.DOWN:
-            self.direction = direction.DOWN
-        elif self.direction != direction.DOWN and change_direction_to == direction.UP:
-            self.direction = direction.UP
-        elif self.direction != direction.RIGHT and change_direction_to == direction.LEFT:
-            self.direction = direction.LEFT
-        elif self.direction != direction.LEFT and change_direction_to == direction.RIGHT:
-            self.direction = direction.RIGHT
+        if self.direction != UP and change_direction_to == DOWN:
+            self.direction = DOWN
+        elif self.direction != DOWN and change_direction_to == UP:
+            self.direction = UP
+        elif self.direction != RIGHT and change_direction_to == LEFT:
+            self.direction = LEFT
+        elif self.direction != LEFT and change_direction_to == RIGHT:
+            self.direction = RIGHT
 
-        if self.direction == direction.RIGHT:
+        if self.direction == RIGHT:
             self.head = (self.head[0] + TILE_SIZE, self.head[1])
-        elif self.direction == direction.LEFT:
+        elif self.direction == LEFT:
             self.head = (self.head[0] - TILE_SIZE, self.head[1])
-        elif self.direction == direction.UP:
+        elif self.direction == UP:
             self.head = (self.head[0], self.head[1] - TILE_SIZE)
-        elif self.direction == direction.DOWN:
+        elif self.direction == DOWN:
             self.head = (self.head[0], self.head[1] + TILE_SIZE)
 
         self.body.insert(0, list(self.head))
@@ -51,3 +57,12 @@ class Snake:
             if self.head == body_block:
                 return False
         return True
+
+    # def auto_move(self, direction_list):
+    #     direction_list_copy = direction_list
+    #     for direction in direction_list_copy:
+    #         print("move", direction)
+    #         # self.move(direction)
+    #         # direction_list.remove(direction)
+    #         # time.sleep(5)
+    #     time.sleep(10)

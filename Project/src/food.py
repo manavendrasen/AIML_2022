@@ -11,9 +11,9 @@ class Food:
         self.spawn()
 
     def spawn(self):
-        self.x = ((random.randint(self.size, 720 - self.size)) //
+        self.x = ((random.randint(self.size, WINDOW_WIDTH - self.size)) //
                   self.size) * self.size
-        self.y = ((random.randint(self.size, 480 - self.size)) //
+        self.y = ((random.randint(self.size, WINDOW_HEIGHT - self.size)) //
                   self.size) * self.size
         self.spawned = True
 

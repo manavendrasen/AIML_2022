@@ -1,3 +1,5 @@
+import enum
+from this import d
 import pygame
 import sys
 
@@ -9,6 +11,9 @@ import constants.directions as direction
 from src.tile import Tile
 from src.snake import Snake
 from src.food import Food
+
+from bfs_search import *
+from dfs_search import *
 
 
 class Game:
@@ -59,7 +64,7 @@ class Game:
         sys.exit()
 
 
-if __name__ == '__main__':
+def main():
     game = Game()
 
     # Create a new snake
@@ -71,7 +76,7 @@ if __name__ == '__main__':
 
     # Create a new food
     food = Food()
-
+    is_snake_moving = True
     while game.running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -90,14 +95,34 @@ if __name__ == '__main__':
 
         game.draw_background()
 
-        for body_block in snake.get_body():
-            pygame.draw.rect(game.window, game.get_snake_color(), pygame.Rect(
-                body_block[0], body_block[1], TILE_SIZE, TILE_SIZE))
+        pygame.draw.rect(game.window, colors.YELLOW, pygame.Rect(
+            100, 100, TILE_SIZE, TILE_SIZE))
+
+        for index, body_block in enumerate(snake.get_body()):
+            if index == 0:
+                pygame.draw.rect(game.window, colors.WHITE, pygame.Rect(
+                    body_block[0], body_block[1], TILE_SIZE, TILE_SIZE))
+            else:
+                pygame.draw.rect(game.window, game.get_snake_color(), pygame.Rect(
+                    body_block[0], body_block[1], TILE_SIZE, TILE_SIZE))
 
         pygame.draw.rect(game.window, colors.RED, pygame.Rect(
             food.x, food.y, TILE_SIZE, TILE_SIZE))
 
-        snake.move(snake_direction)
+        if(is_snake_moving):
+            # BFS SEARCH
+            # directions = bfs_search(snake, food)
+
+            # DFS SEARCH
+            directions = dfs_search(snake, food)
+
+            while(len(directions) > 0):
+                dir = directions.pop(0)
+                print(dir)
+                snake.move(dir)
+            # snake.move(direction.LEFT)
+            print("Position of snake head after search", snake.get_head())
+            is_snake_moving = False
 
         if(snake.isAlive() == False):
             snake_direction = direction.RIGHT
@@ -108,11 +133,14 @@ if __name__ == '__main__':
             game.score = 0
 
         # Check if the snake has eaten the food
-        if snake.get_head() == food.get_position():
-            game.score += 1
-            snake.grow()
-            food.despawn()
-            food.spawn()
+        # if snake.get_head() == food.get_position():
+        #     game.score += 1
+        #     snake.grow()
+        #     food.despawn()
+        #     food.spawn()
 
         pygame.display.update()
         game.fps_controller.tick(FPS)
+
+
+main()
