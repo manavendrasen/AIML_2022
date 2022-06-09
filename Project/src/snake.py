@@ -58,11 +58,11 @@ class Snake:
                 return False
         return True
 
-    # def auto_move(self, direction_list):
-    #     direction_list_copy = direction_list
-    #     for direction in direction_list_copy:
-    #         print("move", direction)
-    #         # self.move(direction)
-    #         # direction_list.remove(direction)
-    #         # time.sleep(5)
-    #     time.sleep(10)
+    def auto_move(self, direction_list):
+        direction_list_copy = direction_list
+        for direction in direction_list_copy:
+            print("move", direction)
+            # self.move(direction)
+            # direction_list.remove(direction)
+            # time.sleep(5)
+        time.sleep(10)

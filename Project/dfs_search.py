@@ -26,10 +26,6 @@ def dfs_search(snake, food):
             print("current_position", current_position)
             print("food position", food.get_position())
             print("Found food")
-            # game.score += 1
-            # snake.grow()
-            # food.despawn()
-            # food.spawn()
             directions = directions[1:]
             return directions
 
